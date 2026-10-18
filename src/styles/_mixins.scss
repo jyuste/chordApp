@@ -1,0 +1,10 @@
+@use 'tokens' as *;
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+@mixin focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}

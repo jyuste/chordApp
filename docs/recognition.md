@@ -1,0 +1,11 @@
+# Reconocimiento local: estado y límites
+
+El afinador usa Web Audio y un estimador YIN local para una sola nota sostenida. La ventana incluye el registro de Si0 (B0) del bajo de cinco cuerdas. No reconoce acordes polifónicos desde el micrófono; la exactitud con grabaciones reales, ruido y distintos instrumentos requiere una evaluación específica.
+
+Los diagramas se analizan sin servicios externos ni modelos: se compone la transparencia sobre blanco, se calcula luminancia y se buscan líneas oscuras continuas mediante proyecciones. Se exige una cuadrícula regular de cuatro, cinco o seis cuerdas y al menos tres límites de traste. Se buscan marcas oscuras a ambos lados de cada cuerda, cerca del centro de la casilla, excluyendo el propio trazo de la cuerda. El tamaño máximo es 1024 × 1024. El usuario declara el primer traste (1–36); la cuerda grave corresponde al lado izquierdo.
+
+La detección rechaza líneas irregulares, posiciones ambiguas, varias marcas sobre una misma cuerda y cuadrículas sin puntos claros. El resultado deja sin asignar las cuerdas sin punto: no deduce cuerdas al aire ni silenciadas a partir de círculos o cruces. La interfaz pide confirmar esos estados y el traste antes de aplicar. La confianza expresa fuerza de evidencia geométrica; no es una probabilidad calibrada. Las pruebas actuales son imágenes RGBA sintéticas, no una medición de exactitud sobre diagramas reales. Rotaciones, perspectiva, color claro, cifras dentro de círculos, cejillas y maquetaciones poco convencionales pueden requerir transcripción manual.
+
+Las fotos de manos siguen un flujo asistido/manual. La oclusión, las cuerdas realmente pulsadas y la calibración de la perspectiva no están resueltas por este detector.
+
+Basic Pitch en TypeScript es un candidato para evaluar transcripción polifónica futura. No está integrado ni se han medido precisión o latencia con grabaciones reales; no se atribuyen capacidades de producción a esa propuesta. La puerta de salida para ampliar el reconocimiento exige un conjunto de referencias reales con anotaciones, evaluación separada por instrumento/registro, precisión y falsos positivos, tiempo de respuesta en dispositivos representativos y rechazo de entradas inciertas. El análisis geométrico actual también necesita esa validación con diagramas reales antes de presentarse como reconocimiento general.
